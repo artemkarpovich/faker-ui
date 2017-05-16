@@ -8,6 +8,10 @@ const initialState = {
   items: [],
   error: {},
   isFetching: false,
+  pagination: {
+    page: 1,
+    perPage: 10,
+  },
 };
 
 export default (state = initialState, action) => {

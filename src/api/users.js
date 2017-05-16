@@ -3,4 +3,4 @@ import config from './../config';
 
 const url = config.api.host;
 
-export const fetchUsers = () => axios.get(`${url}/users`);
+export const fetchUsers = (page, perPage) => axios.get(`${url}/users`, { params: { page, perPage } });

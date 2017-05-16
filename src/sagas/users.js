@@ -7,9 +7,9 @@ import {
   usersFetchFailed,
 } from './../actions/users';
 
-const fetchUsers = function* fetchUsers() {
+const fetchUsers = function* fetchUsers({ payload: { page, perPage }}) {
   try {
-    const response = yield call(api.fetchUsers);
+    const response = yield call(api.fetchUsers, page, perPage);
 
     yield put(usersFetchSuccessed(response.data));
   } catch (error) {

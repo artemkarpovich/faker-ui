@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import Table from './Table';
+import Table from './components/Table';
 import { usersFetchRequested } from './actions/users';
 
 import logo from './logo.svg';
@@ -9,9 +9,9 @@ import './App.css';
 
 class App extends Component {
   componentDidMount() {
-    const { actions } = this.props;
+    const { actions, users: { pagination: { page, perPage } } } = this.props;
 
-    actions.usersFetchRequested();
+    actions.usersFetchRequested(page, perPage);
   }
 
   render() {
