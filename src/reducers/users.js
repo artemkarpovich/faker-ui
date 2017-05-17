@@ -2,9 +2,12 @@ import {
   USERS_FETCH_REQUESTED,
   USERS_FETCH_SUCCESSED,
   USERS_FETCH_FAILED,
+
+  SET_CURRENT_PAGE,
 } from './../actions/users';
 
 const initialState = {
+  numberOfItems: 0,
   items: [],
   error: {},
   isFetching: false,
@@ -24,7 +27,8 @@ export default (state = initialState, action) => {
     case USERS_FETCH_SUCCESSED:
       return {
         ...state,
-        items: action.payload,
+        items: action.payload.users,
+        numberOfItems: action.payload.count,
         isFetching: false,
       };
     case USERS_FETCH_FAILED:
@@ -33,6 +37,14 @@ export default (state = initialState, action) => {
         error: action.paylaod,
         isFetching: false,
       };
+    case SET_CURRENT_PAGE:
+      return {
+        ...state,
+        pagination: {
+          ...state.pagination,
+          page: action.payload,
+        },
+      }
     default:
       return state;
   }
