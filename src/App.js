@@ -22,13 +22,13 @@ class App extends Component {
   }
 
   render() {
-    const { users: { items, numberOfItems, pagination: { page, perPage } } } = this.props;
+    const { users: { allIds, items, numberOfItems, pagination: { page, perPage } } } = this.props;
 
     return (
       <div className="App">
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
+          <h2>Faker</h2>
         </div>
         <Table
           items={items}
@@ -36,6 +36,7 @@ class App extends Component {
           perPage={perPage}
           numberOfItems={numberOfItems}
           onSetCurrentPage={this.handleSetCurrentPage}
+          allIds={allIds}
         />
       </div>
     );

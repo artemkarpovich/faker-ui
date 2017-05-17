@@ -5,12 +5,14 @@ import {
 
   SET_CURRENT_PAGE,
 } from './../actions/users';
+import { normalizeEntries } from './../utils/normalizeResponse';
 
 const initialState = {
   numberOfItems: 0,
-  items: [],
+  items: {},
   error: {},
   isFetching: false,
+  allIds: [],
   pagination: {
     page: 1,
     perPage: 10,
@@ -25,9 +27,13 @@ export default (state = initialState, action) => {
         isFetching: true,
       };
     case USERS_FETCH_SUCCESSED:
+      const items = normalizeEntries(action.payload.users);
+      const allIds = action.payload.users.map(user => user.id);
+
       return {
         ...state,
-        items: action.payload.users,
+        allIds,
+        items,
         numberOfItems: action.payload.count,
         isFetching: false,
       };

@@ -18,7 +18,6 @@ const Button = styled.a`
   font-weight: 600;
   color: ${props => props.active ? 'white' : '#0366d6'};
   white-space: nowrap;
-  vertical-align: middle;
   cursor: pointer;
   background: #fff;
   border: 1px solid #e1e4e8;
@@ -85,12 +84,12 @@ export default ({ page, perPage, numberOfItems, onSetCurrentPage }) => {
         {
           page === 1 ? 
             <InactiveButton
-              onClick={page === 1 ? false : () => onSetCurrentPage(pages - 1)}
+              onClick={page === 1 ? false : () => onSetCurrentPage(page - 1)}
             >
               Previous
             </InactiveButton> :
             <Button
-              onClick={page === 1 ? false : () => onSetCurrentPage(pages - 1)}
+              onClick={page === 1 ? false : () => onSetCurrentPage(page - 1)}
             >
               Previous
             </Button>

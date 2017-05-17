@@ -12,20 +12,47 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   margin-top: 20px;
+  padding: 10px;
 `;
 
-export default ({ items, page, perPage, numberOfItems, onSetCurrentPage }) => (
+const Table = styled.table`
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 10px;
+  background-color: #fff;
+  border: 2px solid #dcdcdc;
+  border-radius: 3px;
+
+  > tbody > tr > td, > thead > tr > th {
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 2px solid #ddd;
+  }
+
+  > th {
+    text-align: left;
+  }
+
+  > thead tr:first-child th {
+    border-top: 0;
+  }
+`;
+
+export default ({ items, page, perPage, numberOfItems, onSetCurrentPage, allIds }) => (
   <Wrapper>
-    <table>
-      <tbody>
+    <Table>
+      <thead>
         <Header
           columns={columns}
         />
+      </thead>
+      <tbody>
         {
-          items.map(item => <Row item={item} key={item.id}/>)
+          allIds.map(id => <Row item={items[id]} key={id}/>)
         }
       </tbody>
-    </table>
+    </Table>
 
     <PaginationBlock
       page={page}
